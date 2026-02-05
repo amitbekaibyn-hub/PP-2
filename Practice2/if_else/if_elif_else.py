@@ -1,4 +1,3 @@
-#example 1
 #example1
 a = 33
 b = 33
