@@ -1,33 +1,24 @@
-#example 1
-import json  
+import json
 
-data = {"name": "Aibyn", "age": 17}  
-json_data = json.dumps(data)  
 
-print(json_data)
-#example 2
-import json  
+with open("sample-data.json") as f:
+    data = json.load(f)
 
-json_string = '{"name": "Aibyn", "age": 17}'  
-data = json.loads(json_string)  
 
-print(data["name"])
-#example 3
-import json  
+print("Interface Status")
+print("=" * 80)
+print(f"{'DN':50} {'Description':20} {'Speed':8} {'MTU':6}")
+print("-" * 80)
 
-data = {"city": "Almaty"}  
 
-with open("data.json", "w") as file:  
-    json.dump(data, file)
-#example 4
-import json  
+interfaces = data["imdata"]
 
-with open("data.json", "r") as file:  
-    data = json.load(file)  
-
-print(data)
-#example 5
-import json  
-
-data = {"name": "Aibyn", "skills": ["Python", "Math"]}  
-print(json.dumps(data, indent=4))
+for interface in interfaces:
+    attributes = interface["l1PhysIf"]["attributes"]
+    
+    dn = attributes.get("dn", "")
+    descr = attributes.get("descr", "")
+    speed = attributes.get("speed", "")
+    mtu = attributes.get("mtu", "")
+    
+    print(f"{dn:50} {descr:20} {speed:8} {mtu:6}")
