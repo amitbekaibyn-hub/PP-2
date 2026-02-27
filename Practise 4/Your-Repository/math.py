@@ -1,26 +1,27 @@
-#example 1
-import math
-print(math.sqrt(25))
-
-#example 2
+#1 example
 import math
 
-print(math.ceil(4.2))
-print(math.floor(4.8))
+degree = float(input("Enter degree: "))
+radian = degree * math.pi / 180  
+print(f"Radian: {radian:.6f}")
+#2example
+height = float(input("Height: "))
+base1 = float(input("Base, first value: "))
+base2 = float(input("Base, second value: "))
 
-#example 3
+area = (base1 + base2) * height / 2
+print(f"Area of trapezoid: {area}")
+#3example
 import math
 
-print(math.pi)
+n = int(input("Input number of sides: "))
+s = float(input("Input the length of a side: "))
 
-#example 4
-import random
+area = (n * s**2) / (4 * math.tan(math.pi / n))
+print(f"The area of the polygon is: {area}")
+#4example
+base = float(input("Length of base: "))
+height = float(input("Height of parallelogram: "))
 
-print(random.randint(1, 10))
-
-#example 5
-import random
-
-numbers = [1, 2, 3, 4, 5]
-random.shuffle(numbers)
-print(numbers)
+area = base * height
+print(f"Area of parallelogram: {area}")
