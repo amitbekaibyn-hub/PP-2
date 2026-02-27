@@ -1,28 +1,24 @@
-#example 1
-from datetime import datetime
-now=datetime.now()
-print(now)
+import json
 
-#example 2
-from datetime import datetime
-date=datetime(2026,5,27)
-print(date)
 
-#example 3
-from datetime import datetime, timedelta
-today=date.now()
-future =today + timedelta(days=7)
-print(future)                        
-#example 4
-from datetime import datetime
-d1=datetime(2026,1,11)
-d2=datetime(2025,1,11)
-difference=d2-d1    
-print(difference.days)
+with open("sample-data.json") as f:
+    data = json.load(f)
 
-#example 5
-from datetime import datetime
 
-now=datetime.now()
-formatted=now.strftime("%d-%m-%Y")
-print(formatted)
+print("Interface Status")
+print("=" * 80)
+print(f"{'DN':50} {'Description':20} {'Speed':8} {'MTU':6}")
+print("-" * 80)
+
+
+interfaces = data["imdata"]
+
+for interface in interfaces:
+    attributes = interface["l1PhysIf"]["attributes"]
+    
+    dn = attributes.get("dn", "")
+    descr = attributes.get("descr", "")
+    speed = attributes.get("speed", "")
+    mtu = attributes.get("mtu", "")
+    
+    print(f"{dn:50} {descr:20} {speed:8} {mtu:6}")
