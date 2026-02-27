@@ -1,24 +1,42 @@
-import json
+#example 1
+from datetime import datetime, timedelta
 
+today = datetime.now()
+five_days_ago = today - timedelta(days=5)
 
-with open("sample-data.json") as f:
-    data = json.load(f)
+print("Current date:", today)
+print("Five days ago:", five_days_ago)
 
+#example 2
 
-print("Interface Status")
-print("=" * 80)
-print(f"{'DN':50} {'Description':20} {'Speed':8} {'MTU':6}")
-print("-" * 80)
+from datetime import datetime, timedelta
 
+today = datetime.now()
+yesterday = today - timedelta(days=1)
+tomorrow = today + timedelta(days=1)
 
-interfaces = data["imdata"]
+print("Yesterday:", yesterday)
+print("Today:", today)
+print("Tomorrow:", tomorrow)
 
-for interface in interfaces:
-    attributes = interface["l1PhysIf"]["attributes"]
-    
-    dn = attributes.get("dn", "")
-    descr = attributes.get("descr", "")
-    speed = attributes.get("speed", "")
-    mtu = attributes.get("mtu", "")
-    
-    print(f"{dn:50} {descr:20} {speed:8} {mtu:6}")
+#example 3
+
+from datetime import datetime
+
+now = datetime.now()
+without_microseconds = now.replace(microsecond=0)
+
+print("With microseconds:", now)
+print("Without microseconds:", without_microseconds)
+
+#example 4
+
+from datetime import datetime
+
+date1 = datetime(2025, 1, 1, 12, 0, 0)
+date2 = datetime(2025, 1, 2, 12, 0, 0)
+
+difference = date2 - date1
+seconds = difference.total_seconds()
+
+print("Difference in seconds:", seconds)
