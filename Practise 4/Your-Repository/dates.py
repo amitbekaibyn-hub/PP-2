@@ -6,6 +6,12 @@ five_days_ago = today - timedelta(days=5)
 
 print("Current date:", today)
 print("Five days ago:", five_days_ago)
+from datetime import datetime,timedelta
+
+today = datetime.now()
+fivdays_ago= today -timedelta(days=5)
+print("Current date:",today)
+
 
 #example 2
 
