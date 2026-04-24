@@ -3,12 +3,14 @@ import os
 
 class MusicPlayer:
     def __init__(self, music_folder):
-        self.music_folder = music_folder
+        current_dir = os.path.dirname(__file__)
+        self.music_folder = os.path.join(current_dir, music_folder)
 
         self.playlist = []
-        for file in os.listdir(music_folder):
+        for file in os.listdir(self.music_folder):
             if file.endswith(".mp3") or file.endswith(".wav"):
                 self.playlist.append(file)
+
         self.playlist.sort()
 
         self.current_index = 0
@@ -16,7 +18,9 @@ class MusicPlayer:
         self.paused = False
 
         if len(self.playlist) > 0:
-            pygame.mixer.music.load(os.path.join(self.music_folder, self.playlist[0]))
+            pygame.mixer.music.load(
+                os.path.join(self.music_folder, self.playlist[0])
+            )
 
     def play_pause(self):
         if len(self.playlist) == 0:

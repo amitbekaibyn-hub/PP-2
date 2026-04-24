@@ -1,16 +1,22 @@
 import pygame
-import datetime
+import os
+import datetime 
 
 class Clock:
     def __init__(self):
-        self.face = pygame.image.load('images/mainclock.png')
-        self.face = pygame.transform.scale(self.face, (600, 600))
+        current_dir = os.path.dirname(__file__)
 
-        self.minute_arrow = pygame.image.load('images/rightarm.png')
-        self.minute_arrow = pygame.transform.scale(self.minute_arrow, (800, 700))
+        self.face = pygame.image.load(
+            os.path.join(current_dir, 'images', 'mainclock.png')
+        )
 
-        self.second_arrow = pygame.image.load('images/leftarm.png')
-        self.second_arrow = pygame.transform.scale(self.second_arrow, (40, 500))
+        self.minute_arrow = pygame.image.load(
+            os.path.join(current_dir, 'images', 'rightarm.png')
+        )
+
+        self.second_arrow = pygame.image.load(
+            os.path.join(current_dir, 'images', 'leftarm.png')
+        )
 
     def draw(self, screen):
         my_time = datetime.datetime.now()
@@ -23,7 +29,7 @@ class Clock:
         minute = pygame.transform.rotate(self.minute_arrow, angleMINUTE)
         second = pygame.transform.rotate(self.second_arrow, angleSECOND)
 
-        screen.blit(self.face, (100, 40))
+        screen.blit(self.face, (-300, -200))
 
         screen.blit(second, (400 - second.get_width() // 2, 340 - second.get_height() // 2))
         screen.blit(minute, (400 - minute.get_width() // 2, 340 - minute.get_height() // 2))
